@@ -10,18 +10,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git items", "git items", "{
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cxxdb_cell", "source\projects\cxxdb_cell\cxxdb_cell.vcxproj", "{BA545053-01C2-45B1-8DEA-E4709E9CB7D3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cxxdb_cell", "source\cxxdb_cell\cxxdb_cell.vcxproj", "{BA545053-01C2-45B1-8DEA-E4709E9CB7D3}"
 	ProjectSection(ProjectDependencies) = postProject
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7} = {91DF4059-DEC8-4F1A-A195-F904B402E0C7}
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3} = {3D98CE6E-468B-455D-951B-3A8880BC53F3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cxxdb_sheet", "source\projects\cxxdb_sheet\cxxdb_sheet.vcxproj", "{7F1255E2-E2C5-43C1-A728-10E07D68EDCD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cxxdb_sheet", "source\cxxdb_sheet\cxxdb_sheet.vcxproj", "{7F1255E2-E2C5-43C1-A728-10E07D68EDCD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BA545053-01C2-45B1-8DEA-E4709E9CB7D3} = {BA545053-01C2-45B1-8DEA-E4709E9CB7D3}
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7} = {91DF4059-DEC8-4F1A-A195-F904B402E0C7}
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3} = {3D98CE6E-468B-455D-951B-3A8880BC53F3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cxxdb_utilities", "source\projects\cxxdb_utilities\cxxdb_utilities.vcxproj", "{91DF4059-DEC8-4F1A-A195-F904B402E0C7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cxxdb_base", "source\cxxdb_base\cxxdb_base.vcxproj", "{3D98CE6E-468B-455D-951B-3A8880BC53F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,14 +47,14 @@ Global
 		{7F1255E2-E2C5-43C1-A728-10E07D68EDCD}.Release|x64.Build.0 = Release|x64
 		{7F1255E2-E2C5-43C1-A728-10E07D68EDCD}.Release|x86.ActiveCfg = Release|Win32
 		{7F1255E2-E2C5-43C1-A728-10E07D68EDCD}.Release|x86.Build.0 = Release|Win32
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7}.Debug|x64.ActiveCfg = Debug|x64
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7}.Debug|x64.Build.0 = Debug|x64
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7}.Debug|x86.ActiveCfg = Debug|Win32
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7}.Debug|x86.Build.0 = Debug|Win32
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7}.Release|x64.ActiveCfg = Release|x64
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7}.Release|x64.Build.0 = Release|x64
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7}.Release|x86.ActiveCfg = Release|Win32
-		{91DF4059-DEC8-4F1A-A195-F904B402E0C7}.Release|x86.Build.0 = Release|Win32
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3}.Debug|x64.ActiveCfg = Debug|x64
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3}.Debug|x64.Build.0 = Debug|x64
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3}.Debug|x86.ActiveCfg = Debug|Win32
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3}.Debug|x86.Build.0 = Debug|Win32
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3}.Release|x64.ActiveCfg = Release|x64
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3}.Release|x64.Build.0 = Release|x64
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3}.Release|x86.ActiveCfg = Release|Win32
+		{3D98CE6E-468B-455D-951B-3A8880BC53F3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
