@@ -9,5 +9,16 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
+#include <cstdlib>
+#include <iostream>
+#include <cstring>
+#include <cstdarg>
+#include <sstream>
+#include <fstream>
+#include <typeinfo>
+#include <type_traits>
+#include <locale>
+#include <codecvt>
+#include <filesystem>
 
 #endif //PCH_H

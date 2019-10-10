@@ -17,3 +17,9 @@
 # Visual Studio
 /.vs/*
 /static/*
+/dll/*
+*.sln
+*.pdb
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
