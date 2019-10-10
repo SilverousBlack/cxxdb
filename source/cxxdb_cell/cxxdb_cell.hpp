@@ -75,7 +75,7 @@ namespace cxxdb {
 	};
 
 	template<typename charT>
-	class basic_cell_function : public basic_cell<charT, function>;
+	class basic_cell_function : public basic_cell<charT, function> {};
 }
 
 #endif // !_CXXDB_CELL_HPP_
