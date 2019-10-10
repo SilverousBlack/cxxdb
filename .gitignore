@@ -23,3 +23,7 @@
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+
+# Testing files
+test.*
+testout.*
