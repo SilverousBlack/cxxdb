@@ -26,10 +26,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="cxxdb_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cxxdb_base.cxx">
+    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

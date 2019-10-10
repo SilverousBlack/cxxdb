@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cxxdb_cell.hpp" />
+    <ClCompile Include="cell.cxx" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cxxdb_cell.cxx" />
+    <ClInclude Include="cell.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
