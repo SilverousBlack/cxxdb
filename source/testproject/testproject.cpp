@@ -9,8 +9,6 @@ using namespace cxxdb;
 int main(){
 	std_string<char> lstr = "try";
 	std_string<char> rstr = "try";
-	set_comparator_common<char>();
-	std::cout << "Test: " << lstr << " " << rstr << " | " << call_comparator(lstr, rstr);
 	return 0;
 }
 

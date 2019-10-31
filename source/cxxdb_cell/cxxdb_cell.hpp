@@ -21,7 +21,6 @@ namespace cxxdb {
 	private:
 		std_string<charT>			content;
 		std_string<charT>			intern;
-		content_type::content_type	intype;
 	};
 }
 #endif // !_CXXDB_CELL_HPP_

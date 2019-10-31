@@ -48,8 +48,8 @@ namespace cxxdb {
 
 	/* comparators */
 	template<typename charT>
-	inline bool common_str_comparator(std_string<charT> lstr, std_string<charT> rstr) {
-		return lstr == rstr;
+	inline bool common_str_comparator(std_string<charT> lstr, std_string<charT> rstr){
+		return (lstr == rstr);
 	}
 	template<typename type>
 	inline bool common_type_comparator(type left, type right) {
@@ -58,69 +58,54 @@ namespace cxxdb {
 
 
 	/* string content type */
-	namespace content_type {
-		enum content_type {
-			str,
-			num,
-			cur,
-			bin,
-			oct,
-			hex,
-			dat,
-		};
-	}
-
-	using content_t = content_type::content_type;
-	const content_t content_str = content_type::str;
-	const content_t content_num = content_type::num;
-	const content_t content_cur = content_type::bin;
-	const content_t content_oct = content_type::oct;
-	const content_t content_hex = content_type::hex;
-	const content_t content_dat = content_type::dat;
+	enum class content_t {
+		str,
+		num,
+		cur,
+		bin,
+		oct,
+		hex,
+		dat,
+	};
 
 	/* string encoding */
-	namespace encoding {
-		enum encoding {
-			ANSI,
-			UTF8,
-			UTF16,
-			UTF32,
-		};
-	}
-
-	using encoding_t = encoding::encoding;
-	const encoding_t encoding_ansi = encoding::ANSI;
-	const encoding_t encoding_utf8 = encoding::UTF8;
-	const encoding_t encoding_utf16 = encoding::UTF16;
-	const encoding_t encoding_utf32 = encoding::UTF32;
+	enum class encoding_t {
+		ANSI,
+		UTF8,
+		UTF16,
+		UTF32
+	};
 	
-	/* interpreter object */
-	/* class decleration */
-	template<typename charT, encoding_t encodingT = encoding_ansi>
-	class interpreter {
-	private:
-		std_string<charT>	intern;
-		std_string<charT>	content;
-		long long double	val;
-		
-	public:
-		interpreter(std_string<charT>);
-		interpreter(const charT*);
-		~interpreter();
-	protected:
-		bool util_isdatfunc(std_string<charT>);
-		bool util_isstr(std_string<charT>);
+	template<typename charT>
+	struct pair_str;
+
+	template<>
+	struct pair_str<char> {
 
 	};
 
-	/* class implemetation */
-	template<typename charT, encoding_t encodingT>
-	inline interpreter<charT, encodingT>::interpreter(std_string<charT> str)
-		: intern(str)
-	{
-		size_t sz = str.size();
-		if(s)
-	}
+	/* interpreter object */
+	/* class decleration */
+	template<typename charT>
+	class interpreter;
+
+	/* definition for char-based interpreter */
+	template<>
+	class interpreter<char> {
+	private:
+		static uint64_t		_spawn;
+		std_string<char>	caught;
+		std_string<char>	out;
+		encoding_t			encoder;
+		double				value;
+	public:
+		interpreter();
+		interpreter(std_string<char>);
+		~interpreter();
+
+		uint64_t	spawned();
+	};
+
 }
 
 #endif // !CXXDB_BASE_HPP

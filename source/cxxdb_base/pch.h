@@ -17,6 +17,7 @@
 #include <fstream>
 #include <typeinfo>
 #include <type_traits>
+#include <vector>
 #include <locale>
 #include <codecvt>
 #include <filesystem>
