@@ -7,8 +7,7 @@ using namespace std;
 using namespace cxxdb;
 
 int main(){
-	std_string<char> lstr = "try";
-	std_string<char> rstr = "try";
+	cout << interpreter<char>::spawned();
 	return 0;
 }
 

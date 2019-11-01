@@ -75,14 +75,6 @@ namespace cxxdb {
 		UTF16,
 		UTF32
 	};
-	
-	template<typename charT>
-	struct pair_str;
-
-	template<>
-	struct pair_str<char> {
-
-	};
 
 	/* interpreter object */
 	/* class decleration */
@@ -100,11 +92,55 @@ namespace cxxdb {
 		double				value;
 	public:
 		interpreter();
-		interpreter(std_string<char>);
+		interpreter(std_string<char>, encoding_t = encoding_t::ANSI);
 		~interpreter();
 
-		uint64_t	spawned();
+		uint64_t			spawned();
+		std_string<char>	encoding();
 	};
+
+	/* interpreter_attrbutes structure */
+	/* data structure declaration */
+	template<typename charT, typename uchar>
+	struct interpreter_attributes;
+
+	template<>
+	struct interpreter_attributes<char, char> {
+		/* members */
+		std_string<char>	char_type;
+		std_string<char>	encoder;
+		uint64_t			spawn_count;
+
+		interpreter_attributes();
+		interpreter_attributes(interpreter<char>);
+		~interpreter_attributes() {};
+	};
+
+	inline interpreter_attributes<char, char>::interpreter_attributes()
+		: char_type("char")
+		, encoder()
+		, spawn_count()
+	{}
+
+	inline interpreter_attributes<char, char>::interpreter_attributes(interpreter<char> interpret)
+		: char_type("char")
+		, encoder(interpret.encoding())
+		, spawn_count(interpret.spawned())
+	{}
+
+	inline uint64_t interpreter<char>::spawned(){
+		return uint64_t(_spawn);
+	}
+
+	inline std_string<char> interpreter<char>::encoding(){
+		std_string<char> internal = "";
+		if (encoder == encoding_t::ANSI) internal = "ANSI";
+		else if (encoder == encoding_t::UTF8) internal = "UTF8";
+		else if (encoder == encoding_t::UTF16) internal = "UTF16";
+		else if (encoder == encoding_t::UTF32) internal = "UTF32";
+		else;
+		return std_string<char>(internal);
+	}
 
 }
 
