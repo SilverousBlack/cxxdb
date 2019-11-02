@@ -7,7 +7,6 @@ using namespace std;
 using namespace cxxdb;
 
 int main(){
-	cout << interpreter<char>::spawned();
 	return 0;
 }
 

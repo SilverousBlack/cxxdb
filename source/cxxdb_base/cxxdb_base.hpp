@@ -48,7 +48,7 @@ namespace cxxdb {
 
 	/* comparators */
 	template<typename charT>
-	inline bool common_str_comparator(std_string<charT> lstr, std_string<charT> rstr){
+	inline bool common_str_comparator(std_string<charT> lstr, std_string<charT> rstr) {
 		return (lstr == rstr);
 	}
 	template<typename type>
@@ -76,6 +76,9 @@ namespace cxxdb {
 		UTF32
 	};
 
+	std_string<char>	char_encoding(encoding_t);
+	std_string<wchar_t> wchar_encoding(encoding_t);
+
 	/* interpreter object */
 	/* class decleration */
 	template<typename charT>
@@ -95,12 +98,43 @@ namespace cxxdb {
 		interpreter(std_string<char>, encoding_t = encoding_t::ANSI);
 		~interpreter();
 
-		uint64_t			spawned();
-		std_string<char>	encoding();
+		template<typename charT, typename uchar>
+		friend struct interpreter_attributes;
+
+		static uint64_t	spawn_count();
+		uint64_t		spawned();
 	};
+
+	uint64_t interpreter<char>::_spawn = 0;
+
+	template<>
+	class interpreter<wchar_t> {
+	private:
+		static uint64_t		_spawn;
+		std_string<wchar_t>	caught;
+		std_string<wchar_t>	out;
+		encoding_t			encoder;
+		double				value;
+	public:
+		interpreter();
+		interpreter(std_string<char>, encoding_t = encoding_t::UTF16);
+		~interpreter();
+
+		template<typename charT, typename uchar>
+		friend struct interpreter_attributes;
+
+		static uint64_t spawn_count();
+		uint64_t		spawned();
+	};
+
+	uint64_t interpreter<wchar_t>::_spawn = 0;
 
 	/* interpreter_attrbutes structure */
 	/* data structure declaration */
+	/*
+		charT - interpreter char type
+		uchar - interpreter_attributes char type
+	*/
 	template<typename charT, typename uchar>
 	struct interpreter_attributes;
 
@@ -112,36 +146,104 @@ namespace cxxdb {
 		uint64_t			spawn_count;
 
 		interpreter_attributes();
-		interpreter_attributes(interpreter<char>);
+		interpreter_attributes(interpreter<char>&);
+		~interpreter_attributes() {};
+	};
+
+	template<>
+	struct interpreter_attributes<char, wchar_t> {
+		/* members */
+		std_string<wchar_t>	char_type;
+		std_string<wchar_t>	encoder;
+		uint64_t			spawn_count;
+
+		interpreter_attributes();
+		interpreter_attributes(interpreter<char>&);
+		~interpreter_attributes() {};
+	};
+
+	template<>
+	struct interpreter_attributes<wchar_t, char> {
+		/* members */
+		std_string<char>	char_type;
+		std_string<char>	encoder;
+		uint64_t			spawn_count;
+
+		interpreter_attributes();
+		interpreter_attributes(interpreter<wchar_t>&);
 		~interpreter_attributes() {};
 	};
 
 	inline interpreter_attributes<char, char>::interpreter_attributes()
 		: char_type("char")
 		, encoder()
-		, spawn_count()
+		, spawn_count(interpreter<char>::spawn_count())
 	{}
 
-	inline interpreter_attributes<char, char>::interpreter_attributes(interpreter<char> interpret)
+	inline interpreter_attributes<char, wchar_t>::interpreter_attributes()
+		: char_type(L"char")
+		, encoder()
+		, spawn_count(interpreter<char>::spawn_count())
+	{}
+
+	inline interpreter_attributes<wchar_t, char>::interpreter_attributes()
+		: char_type("wchar_t")
+		, encoder()
+		, spawn_count(interpreter<wchar_t>::spawn_count())
+	{}
+
+	inline interpreter_attributes<char, char>::interpreter_attributes(interpreter<char>& interpret)
 		: char_type("char")
-		, encoder(interpret.encoding())
 		, spawn_count(interpret.spawned())
-	{}
+	{
+		encoding_t en = interpret.encoder;
+		encoder = char_encoding(en);
+	}
 
-	inline uint64_t interpreter<char>::spawned(){
+	inline interpreter_attributes<char, wchar_t>::interpreter_attributes(interpreter<char>& interpret)
+		: char_type(L"char")
+		, spawn_count(interpret.spawned())
+	{
+		encoding_t en = interpret.encoder;
+		encoder = wchar_encoding(en);
+	}
+
+	inline interpreter_attributes<wchar_t, char>::interpreter_attributes(interpreter<wchar_t>& interpret)
+		: char_type("wchar_t")
+		, spawn_count(interpret.spawned())
+	{
+		encoding_t en = interpret.encoder;
+		encoder = char_encoding(en);
+	}
+
+	inline interpreter<char>::interpreter()
+		: caught()
+		, out()
+		, encoder()
+		, value()
+	{
+		_spawn++;
+	}
+
+	inline interpreter<char>::~interpreter(){
+		_spawn--;
+	}
+
+	inline uint64_t interpreter<char>::spawn_count() {
 		return uint64_t(_spawn);
 	}
 
-	inline std_string<char> interpreter<char>::encoding(){
-		std_string<char> internal = "";
-		if (encoder == encoding_t::ANSI) internal = "ANSI";
-		else if (encoder == encoding_t::UTF8) internal = "UTF8";
-		else if (encoder == encoding_t::UTF16) internal = "UTF16";
-		else if (encoder == encoding_t::UTF32) internal = "UTF32";
-		else;
-		return std_string<char>(internal);
+	inline uint64_t interpreter<wchar_t>::spawn_count(){
+		return uint64_t(_spawn);
 	}
 
+	inline uint64_t interpreter<char>::spawned() {
+		return uint64_t(_spawn);
+	}
+
+	inline uint64_t interpreter<wchar_t>::spawned() {
+		return uint64_t(_spawn);
+	}
 }
 
 #endif // !CXXDB_BASE_HPP
